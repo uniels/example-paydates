@@ -1,5 +1,9 @@
 *
 !.gitignore
 !getdates.php
+!functions.inc.php
 !overkill
 !overkill/*
+!tests
+!tests/**
+!*.md

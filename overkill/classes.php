@@ -214,9 +214,8 @@ class ShouldBeOnWorkingDay extends DateValueGenerator
 
     protected function isWorkingDay(DateTime $date): bool
     {
-        $dayOfWeek = (int)$date->format('w');
-        $transposedDayOfWeek = (6 + $dayOfWeek) % 7; // 0=monday, 7=sunday
-        return $transposedDayOfWeek <= 5;
+        $dayOfWeek = (int)$date->format('N'); // 1 = monday, 7 = sunday
+        return $dayOfWeek <= 5;
     }
 }
 
