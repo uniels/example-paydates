@@ -1,39 +1,43 @@
 <?php
 require('./classes.php');
 
-// The first argument will contain the filename.
-$filename = $argv[1];
+if (__FILE__ == realpath($_SERVER['SCRIPT_FILENAME'])):
+    // Running this script directly
 
-// Set date values to work with
-$currentDate = new DateTime();
-$currentMonth = (int)$currentDate->format('n');
-$currentMonth = 1;
-$currentYear = $currentDate->format('Y');
+    // The first argument will contain the filename.
+    $filename = $argv[1] ?? 'result.csv';
 
-// Solution
-$csv = new DateFileGenerator($currentYear, $currentMonth);
+    // Set date values to work with
+    $currentDate = new DateTime();
+    $currentMonth = (int)$currentDate->format('n');
+    $currentMonth = 1;
+    $currentYear = $currentDate->format('Y');
 
-$csv->addColumn(new Column("Month", new MonthNameGenerator()));
-$csv->addColumn(
-    new Column(
-        "BonusPayDate",
-        new ShouldBeOnWorkingDay(
-            new FixedDateGenerator(15),
-            'next wednesday'
+    // Solution
+    $csv = new DateFileGenerator($currentYear, $currentMonth);
+
+    $csv->addColumn(new Column("Month", new MonthNameGenerator()));
+    $csv->addColumn(
+        new Column(
+            "BonusPayDate",
+            new ShouldBeOnWorkingDay(
+                new FixedDateGenerator(15),
+                'next wednesday'
+            )
         )
-    )
-);
-$csv->addColumn(
-    new Column(
-        "BaseSalaryDate",
-        new ShouldBeOnWorkingDay(
-            new RelativeDateGenerator('last day of this month'),
-            'last friday'
+    );
+    $csv->addColumn(
+        new Column(
+            "BaseSalaryDate",
+            new ShouldBeOnWorkingDay(
+                new RelativeDateGenerator('last day of this month'),
+                'last friday'
+            )
         )
-    )
-);
+    );
 
-$csv->writeFile($filename);
+    $csv->writeFile($filename);
 
-die();
+    die("File written to {$filename}\n");
 
+endif;

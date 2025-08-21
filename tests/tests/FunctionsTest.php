@@ -5,7 +5,7 @@ namespace tests;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__."/../../functions.inc.php";
+require_once __DIR__."/../../getdates.php";
 
 class FunctionsTest extends TestCase
 {

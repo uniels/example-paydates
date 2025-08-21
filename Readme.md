@@ -1,6 +1,6 @@
 # Pay dates example
 
-## Requirements
+## Assignment
 
 You are required to create a small command-line utility to help a fictional company determine the dates they need to pay
 salaries to their sales department.
@@ -16,22 +16,42 @@ This company is handling their sales payroll in the following way:
   column that contains the bonus payment date.
 
 ## Implementation
-An assignment like this is what I would like to call a 'beer-script'. 
-A simple script which does not need a full-blown implementation and I normally create while sipping my beer. 🍺
 
-Like the one created in [getdates.php](./getdates.php).
+### Requirements
+
+php 8 installed locally and available using your favorite console.
+
+### Runing the script
 
 To run this script, simply call it in your console:
-
 ```shell
 php getdates.php
 ```
 
-> Make sure you've installed php locally
+It will generate the file `result.csv` in the same directory.
 
-### More flavor
+If you want to have another filename, you'll be able to provide one as first argument.
+For example, if you want the filename to be `dates.csv`, you'll run:
 
-To add more flavor to it, more files are added, like
-* files in `./overkill`. A class based implementation.
-* files in `/tests`. Included a test class which tests the functions inside `functions.inc.php`.
+```shell
+php getdates.php dates.csv
+```
 
+## Considerations
+
+I've chosen for an as simple as possible solution here. Requirements like this won´t often change,
+and when they change, they will likely be small. 
+The design of this script allows even someone with little programming knowledge to implement the changes.
+
+You need to share only the `getdates.php` to have it working.
+
+## More flavor
+
+### Testing the functions
+To used functions are tested inside `/tests.php`
+Read the [`Readme.md`](./tests/Readme.md) for test instructions.
+
+### Another implementation using classes
+
+In `/overkill` you'll find a class-based implementation.
+You'll be able to construct your own file using the classed available.
